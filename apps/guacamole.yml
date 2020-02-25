@@ -26,7 +26,8 @@
       set_fact:
         pg_labels:
           traefik.enable: 'true'
-          traefik.frontend.headers.SSLHost: 'plexbak.nl'
+          traefik.frontend.auth.forward.address: '{{gauth}}'
+          traefik.frontend.headers.SSLHost: '{{domain.stdout}}'
           traefik.frontend.headers.SSLRedirect: 'true'
           traefik.frontend.headers.STSIncludeSubdomains: 'true'
           traefik.frontend.headers.STSPreload: 'true'
@@ -35,8 +36,8 @@
           traefik.frontend.headers.contentTypeNosniff: 'true'
           traefik.frontend.headers.customResponseHeaders: 'X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex'
           traefik.frontend.headers.forceSTSHeader: 'true'
-          traefik.frontend.rule: 'Host:guac.plexbak.nl'
-          traefik.port: '8080'
+          traefik.frontend.rule: 'Host:{{pgrole}}.{{domain.stdout}}{{tldset}}{{cname}}'
+          traefik.port: '{{intport}}'
           
 
     - name: 'Setting {{pgrole}} Volumes'
@@ -56,6 +57,8 @@
         name: '{{pgrole}}'
         image: '{{image}}'
         pull: yes
+        published_ports:
+          - '{{ports.stdout}}{{extport}}:{{intport}}'
         volumes: '{{pg_volumes}}'
         env: '{{pg_env}}'
         restart_policy: unless-stopped
