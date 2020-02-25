@@ -55,7 +55,6 @@
           PGID: '1000'
           WEBSOCKET_ENABLED: 'true'
           SIGNUPS_ALLOWED: 'false'
-          ADMIN_TOKEN: 'HPb5C6VqsXFGmS'
           DOMAIN: 'https://pass.plexbak.nl'
 
     # MAIN DEPLOYMENT #############################################################
