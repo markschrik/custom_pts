@@ -12,10 +12,10 @@
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
-        pgrole: 'cachet'
-        intport: '8000'
+        pgrole: 'statping'
+        intport: '8080'
         extport: '32792'
-        image: 'cachethq/docker:2.3.15'
+        image: 'statping/statping'
 
     # CORE (MANDATORY) ############################################################
     - name: 'Including cron job'
@@ -42,25 +42,13 @@
     - name: 'Setting {{pgrole}} Volumes'
       set_fact:
         pg_volumes:
-          - '/opt/appdata/{{pgrole}}/data:/var/lib/postgresql/data'
+          - '/opt/appdata/{{pgrole}}/app:/app'
 
     - name: 'Setting {{pgrole}} ENV'
       set_fact:
         pg_env:
           PUID: '1000'
           PGID: '1000'
-          DB_DRIVER: 'pgsql'
-          DB_HOST: 'postgres'
-          DB_PORT: '5432'
-          DB_DATABASE: 'postgres'
-          DB_USERNAME: 'postgres'
-          DB_PASSWORD: 'postgres'
-          DB_PREFIX: 'chq_'
-          APP_KEY: '-null'
-          APP_LOG: 'errorlog'
-          APP_ENV: '-production'
-          APP_DEBUG: 'false'
-          DEBUG: 'false'
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
