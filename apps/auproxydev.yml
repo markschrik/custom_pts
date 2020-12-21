@@ -14,7 +14,7 @@
       set_fact:
         pgrole: 'auproxydev'
         intport: '8079'
-        extport: '32792'
+        extport: '32793'
         image: 'cybershard/auproxy:dev'
 
     # CORE (MANDATORY) ############################################################
