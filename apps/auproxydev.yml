@@ -12,7 +12,7 @@
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
-        pgrole: 'auproxy'
+        pgrole: 'auproxydev'
         intport: '8079'
         extport: '32792'
         image: 'cybershard/auproxy:dev'
