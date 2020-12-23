@@ -14,7 +14,7 @@
       set_fact:
         pgrole: 'deluge'
         intport: '8112'
-        extport: '32793'
+        extport: '32795'
         image: 'linuxserver/deluge:latest'
 
     # CORE (MANDATORY) ############################################################
