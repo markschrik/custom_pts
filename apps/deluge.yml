@@ -45,6 +45,8 @@
         pg_volumes:
           - '/opt/appdata/{{pgrole}}/config:/config'
           - '/opt/appdata/{{pgrole}}/downloads:/downloads'
+          - '/mnt:/mnt'
+          - '{{path.stdout}}:{{path.stdout}}'
 
     - name: 'Setting {{pgrole}} ENV'
       set_fact:
