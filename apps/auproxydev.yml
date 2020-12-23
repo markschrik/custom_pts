@@ -37,12 +37,14 @@
           traefik.frontend.headers.forceSTSHeader: 'true'
           traefik.frontend.rule: 'Host:{{pgrole}}.{{domain.stdout}}{{tldset}}{{cname}}'
           traefik.port: '{{intport}}'
-          
+
 
     - name: 'Setting {{pgrole}} Volumes'
       set_fact:
         pg_volumes:
           - '/opt/appdata/{{pgrole}}/config:/config'
+          - '/mnt:/mnt'
+          - '{{path.stdout}}:{{path.stdout}}'
 
     - name: 'Setting {{pgrole}} ENV'
       set_fact:
